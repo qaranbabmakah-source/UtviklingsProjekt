@@ -16,17 +16,17 @@ Prosjektstruktur
 
 html-css-projekt/
 
-├── index.html
+index.html
 
-├── styles.css
+styles.css
 
-├── Bilder/
+Bilder/
 
-└── js/
+s/
 
-   ├── produkter.js
+ produkter.js
 
-   └── script.js
+ script.js
 
 Merk: Oppgaveteksten viste også mappen css/, men i mitt prosjekt er stilarket styles.css plassert i hovedmappen.
 
@@ -506,7 +506,7 @@ Hva jeg har lært
 • filter(), includes() og toLowerCase() gjør det mulig å søke i produkter.
 • addEventListener() og DOM knytter handlinger til nettsidens HTML-elementer.
 • Console og trinnvis testing gjør det lettere å finne små skrivefeil.
-Konklusjon
+
 
 Jeg har gjennomført fire deler i prosjektet: Navbar, Grid og Popup; objekter og dynamisk HTML; enkel handlekurv; og søkefunksjon. Nettsiden har fire produkter, prisfiltrering, lagerstatus, handlekurv med antall og totalpris samt søk i navn, beskrivelse og kategori. Jeg testet funksjonene i nettleseren og rettet feil underveis. Jeg forstår nå bedre hvordan HTML, CSS og JavaScript kan brukes sammen til å bygge en interaktiv nettbutikk.
 
