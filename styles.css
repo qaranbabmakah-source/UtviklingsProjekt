@@ -1,0 +1,140 @@
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 30px;
+padding: 20px 30px;
+background-color: lightblue;
+
+}
+.firstling {
+    margin-left: auto;
+}
+
+.navbutton {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    
+}
+
+.navbutton:hover {
+    background-color: #cccccc;
+}
+#produktContainer {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 30px;
+padding: 20px;
+width: 85%;
+margin: 30px auto;
+}
+
+.produkt {
+    background-color: #dceeff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+
+}
+.produkt:hover {
+    background-color: #c0e0ff;
+    transform: scale(1.05);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.produkt button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.produkt button.produktknapp {
+    background-color: green;
+    color: white;
+} 
+.produkt img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.logo {
+    width: auto;
+    height:100px;
+    object-fit: cover;
+    border-radius: 10px;
+
+}
+
+.ContIMG {
+    width:100%;
+    height: 100%;
+object-fit: contain;
+}
+.container {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap:10px;
+    width: 80%;
+    margin: 30px auto; 
+}
+.container div {
+   background-color: #eeeeee;
+   padding: 10px;
+   height: 180px;
+   border-radius: 8px;
+}
+main h1 {
+    text-align: center;
+}
+
+.ContIMG:hover { 
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+#popupIMG {
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    
+} 
+
+#kurvPopup {
+    display:  none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.kurvInnhold {
+    background-color: white;
+    padding: 25px;
+    width: 400px;
+    max-width: 90%;
+    border-radius: 10px;
+}

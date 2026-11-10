@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <img class="logo" src="Bilder/naturbilde 2.jpg" alt="logo">        
+        <a class="navbutton firstling" href=""#">Forside</a>
+        <a class="navbutton" href=""#">Projekter</a>
+        <a class="navbutton" href=""#">Kontakt</a>
+        <button id="kurvKnapp">Hanlekurv (<span id="antallkurv">0</span>)</button>
+    
+</nav>
+<main>
+    <h1>Bildegalleri</h1>
+    <div class="container">
+        <div><img class="ContIMG" src="Bilder/bilde1.webp" alt="Bilde 1"></div>
+         <div><img class="ContIMG" src="Bilder/bilde 2.avif" alt="Bilde 2"></div>
+         <div><img class="ContIMG" src="Bilder/bilde 3.webp" alt="Bilde 3"></div>
+         <div><img class="ContIMG" src="Bilder/bilde 4.jpeg" alt="Bilde 4"></div>
+    </div>
+    <div id="popup" class="popup">
+        <span class="close">&times;</span>
+        <img id="popupIMG" src="" alt="Forstørret bilde">
+    </div>
+
+    
+ 
+<hi>Våre produkter</hi>
+<button id="visAlle">Vis alle</button>
+<button id="visBillige">Under 500 kr</button>
+<input type="text" id="sokefelt" placeholder="søk etter produkt...">
+<p id="antallTreff"></p>
+<div id="produktContainer">
+
+    
+       
+</div>
+<h2>Handlekurv </h2>
+<div id="handlekurvContainer"></div>
+</main>
+<div id="kurvPopup" class="popup">
+<div class="kurvInnhold">
+<button id="lukkKurv">X</button>
+<h2>Handlekurv</h2>
+<div id="kurvListe"></div>
+<p id="totalPris"></p>
+<button id="tomKurv">Tøm handlekurv</button>
+</div>
+</div>
+<script src="js/produkter.js"></script>   
+<script src="js/script.js"></script>
+</body>
+
+</html>
+
+
