@@ -1,4 +1,4 @@
-HTML, CSS og JavaScript
+# UTVIKLINGSPROJEKT – HTML, CSS OG JAVASCRIPT
 
 Dokumentasjon av alle fire oppgavene
 
