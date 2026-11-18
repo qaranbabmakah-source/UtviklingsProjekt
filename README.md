@@ -41,7 +41,11 @@ Merk: Oppgaveteksten viste også mappen css/, men i mitt prosjekt er stilarket s
 
 ## Del 1 – Navbar, CSS Grid og bildepoppup
 
-## Oppgave: Navbar med Flexbox
+## Oppgave 1: Navbar med Flexbox
+
+<img width="580" height="265" alt="image" src="https://github.com/user-attachments/assets/f17fd53d-5f9f-4e55-a4b8-70ee68e474a8" />
+
+<img width="827" height="103" alt="image" src="https://github.com/user-attachments/assets/db9e341a-0817-413a-9ac1-bb3f0790100e" />
 
 Jeg laget en navbar med logo og minst tre lenker: Forside, Prosjekter og Kontakt. Jeg brukte display: flex for å plassere elementene ved siden av hverandre. Med align-items, gap og padding justerte jeg høyde og avstand. Jeg la også til hover-effekt på lenkene.
 
@@ -65,7 +69,11 @@ Jeg laget en navbar med logo og minst tre lenker: Forside, Prosjekter og Kontakt
 
 Jeg lærte at gap styrer avstanden mellom elementene, mens justify-content styrer fordelingen av ledig plass i hovedretningen. Jeg prøvde også endringer i farger, padding, gap og størrelse.
 
-## Oppgave: Bildegalleri med CSS Grid
+## Oppgave 2 : Bildegalleri med CSS Grid
+
+<img width="555" height="191" alt="image" src="https://github.com/user-attachments/assets/214f8803-dc74-4680-87e4-fd5e7b54454d" />
+
+<img width="923" height="236" alt="image" src="https://github.com/user-attachments/assets/43ec7558-e79c-4549-abbf-245710b56ee5" />
 
 Jeg la minst fire bilder i Bilder-mappen og viste dem under navbaren. Jeg brukte CSS Grid for å ordne bildene i kolonner og rader, og object-fit: contain for at bildene skulle beholde riktige proporsjoner.
 
@@ -99,7 +107,11 @@ Jeg la minst fire bilder i Bilder-mappen og viste dem under navbaren. Jeg brukte
 
 Jeg lærte at Flexbox passer godt til en rad eller kolonne, mens Grid passer godt når flere rader og kolonner skal organiseres.
 
-Ekstraoppgave: Klikkbar bildepoppup
+## Ekstraoppgave: Klikkbar bildepoppup
+
+<img width="588" height="148" alt="image" src="https://github.com/user-attachments/assets/2d5d72d0-00ec-40b7-b216-bf21b04b4865" />
+
+<img width="926" height="498" alt="image" src="https://github.com/user-attachments/assets/355e493f-29b3-442b-83f7-e9c8ad10712e" />
 
 Jeg laget en popup slik at et bilde kan åpnes i større størrelse. Den kan lukkes med X, klikk på bakgrunnen eller Escape. JavaScript bruker event listeners og oppdaterer popupbildets src.
 
@@ -142,6 +154,11 @@ Jeg testet også hvordan popupen kunne lukkes med Escape-tasten. Dette lærte me
 
 ## Steg 1–3: Produkter flyttes fra HTML til objekter og arrays
 
+<img width="657" height="459" alt="image" src="https://github.com/user-attachments/assets/355db499-50c7-44e3-b1ee-465734eecdaf" />
+
+<img width="938" height="415" alt="image" src="https://github.com/user-attachments/assets/e825d0e9-9791-4ac8-b8e5-35016f496e4c" />
+
+
 Jeg sluttet å skrive produktkortene manuelt i HTML. I js/produkter.js laget jeg et array med fire produktobjekter. Hvert objekt inneholder informasjon om id, navn, pris, bilde, beskrivelse, lager og kategori.
 
 // Forenklet eksempel på produktobjekt
@@ -177,6 +194,11 @@ const produkter = [
 Jeg brukte console.log(produkter) for å kontrollere at arrayet inneholdt fire objekter (Array(4)).
 
 ## Steg 4–5: Produktkort med JavaScript og CSS
+
+<img width="677" height="503" alt="image" src="https://github.com/user-attachments/assets/8ff51090-40e1-4dc3-bf60-6dbe4e939a74" />
+
+<img width="882" height="198" alt="image" src="https://github.com/user-attachments/assets/c84024be-2973-44f4-8d94-706ab78fdf5f" />
+
 
 I js/script.js laget jeg funksjonen visProdukter(liste), som bruker forEach() og innerHTML til å generere HTML-kort for hvert produkt. Jeg brukte CSS Grid, mellomrom, bakgrunnsfarger og hover-effekter på kortene.
 
@@ -216,6 +238,11 @@ Dette kodeutdraget er forenklet: De faktiske produktkortene har også knapper, l
 
 ## Ekstraoppgave: Lagerstatus med if/else
 
+<img width="640" height="182" alt="image" src="https://github.com/user-attachments/assets/4468bb53-d534-4b85-bbc8-1ee4c91c96d1" />
+
+<img width="422" height="424" alt="image" src="https://github.com/user-attachments/assets/3ba6614a-7543-4db6-a532-9a7ef02ec519" />
+
+
 Jeg la til egenskapen lager i hvert produkt. Jeg brukte if/else for å vise «På lager» hvis lager > 0 og «Utsolgt» hvis lager er 0. Jeg testet blant annet Tastatur med lager 0.
 
 let status = "";
@@ -232,6 +259,9 @@ if (produkt.lager > 0) {
 
 ## Ekstraoppgave: Les mer-knapp og kategorier
 
+<img width="606" height="214" alt="image" src="https://github.com/user-attachments/assets/d43f0cd5-b784-4f69-b7a4-506adc3f9dd5" />
+<img width="98" height="79" alt="image" src="https://github.com/user-attachments/assets/92eeeec6-4502-48ec-a295-8c67aaebfedb" />
+
 Jeg la til en grønn «Les mer»-knapp og beholdt en blå kjøpsknapp på produktkortene. Jeg la også til kategoriene Tilbehør og Skjermer og viste kategorien på kortet. Med forEach() og if telte jeg hvor mange produkter som hadde kategorien Tilbehør: tre.
 
 let antallTilbehor = 0;
@@ -244,7 +274,11 @@ produkter.forEach(produkt => {
 
 console.log("Antall Tilbehør:", antallTilbehor);
 
-Ekstra vanskelig: Filtrer produkter etter pris
+## Ekstra vanskelig: Filtrer produkter etter pris
+
+<img width="653" height="200" alt="image" src="https://github.com/user-attachments/assets/aa335730-a894-4645-8ccf-8447c39c4399" />
+
+<img width="940" height="457" alt="image" src="https://github.com/user-attachments/assets/94f9ae8a-ebca-4762-ab86-ec1cfb83af97" />
 
 Jeg laget knappene «Vis alle» og «Under 500 kr». Med filter() viser nettsiden bare produkter under 500 kr. I denne produktlisten er det Mus som koster 299 kr.
 
@@ -282,6 +316,10 @@ Dette gjorde at jeg fikk bedre forståelse av hvordan data og funksjoner samarbe
 
 ## Grunnoppgaven: Steg 1–5 – array, kjøpsknapp og riktig produkt
 
+<img width="669" height="254" alt="image" src="https://github.com/user-attachments/assets/27c2ee2a-c02e-4f30-beba-9aae6cbd1223" />
+
+<img width="902" height="398" alt="image" src="https://github.com/user-attachments/assets/5b480c03-173e-46ad-8762-48bcce37a698" />
+
 Jeg laget arrayet handlekurv og en funksjon som finner riktig produkt ved hjelp av id. Kjøpsknappen på hvert dynamisk produktkort kaller leggTilHandlekurv(id). Dette er mitt alternativ til lærerens eksempel med data-id og event listener på hver kjøpsknapp. Jeg bruker også event listeners for flere andre knapper.
 
 let handlekurv = [];
@@ -318,6 +356,11 @@ Jeg testet at et klikk på «Køb» legger riktig produkt til i handlekurven.
 
 ## Steg 6–7: Teller i navbar og popup i HTML/CSS
 
+<img width="764" height="191" alt="image" src="https://github.com/user-attachments/assets/0c78ef9a-f982-43df-aebc-7067126b049b" />
+
+<img width="946" height="376" alt="image" src="https://github.com/user-attachments/assets/53b4d20c-979a-4409-8b5a-fd6bb294ee75" />
+
+
 Jeg la en Handlekurv-knapp med en teller i navbaren. I HTML laget jeg en skjult popup med en liste, totalpris, X-knapp og senere «Tøm handlekurv»-knapp. CSS viser popupen som et lag over nettsiden.
 
 <button id="kurvKnapp">Handlekurv (<span id="antallKurv">0</span>)</button>
@@ -340,7 +383,11 @@ Jeg la en Handlekurv-knapp med en teller i navbaren. I HTML laget jeg en skjult 
 
 </div>
 
-Steg 8–10: Vise produkter, totalpris, åpne og lukke
+## Steg 8–10: Vise produkter, totalpris, åpne og lukke
+
+<img width="657" height="119" alt="image" src="https://github.com/user-attachments/assets/7545f629-4cac-4042-8bdf-c9812885ebd8" />
+
+<img width="946" height="496" alt="image" src="https://github.com/user-attachments/assets/f1c9b2ec-e48d-4827-a20c-f13445a16f6e" />
 
 Jeg laget funksjonen visHandlekurv() som går gjennom handlekurv-arrayet og viser innholdet. Totalprisen regnes ut ved å multiplisere antall med pris. Popupen åpnes og lukkes via addEventListener().
 
@@ -372,6 +419,11 @@ Denne kodeblokken viser kjernelogikken, ikke hele funksjonen med tom-handlekurv 
 
 ## Utfordring 1: Fjern produkt
 
+<img width="556" height="68" alt="image" src="https://github.com/user-attachments/assets/f6125a1b-fd29-4684-b05a-83964e523e05" />
+
+<img width="374" height="281" alt="image" src="https://github.com/user-attachments/assets/5f1bc0c3-259a-4c9d-a412-0085c108c18b" />
+
+
 Jeg la til «Fjern» ved hvert produkt og brukte splice(index, 1) for å fjerne produktet. Deretter kaller jeg visHandlekurv() og oppdaterAntall() for å oppdatere både popup og teller.
 
 function fjernProdukt(index) {
@@ -386,9 +438,19 @@ function fjernProdukt(index) {
 
 ## Utfordring 2: Antall av samme produkt
 
+<img width="459" height="140" alt="image" src="https://github.com/user-attachments/assets/f93b5c81-93cc-40fe-80a2-898d69179a56" />
+
+<img width="371" height="226" alt="image" src="https://github.com/user-attachments/assets/ba75523b-7386-4603-b3b7-70268cac9e4f" />
+
 Jeg la til egenskapen antall. Hvis jeg klikker på Mus tre ganger, vises Mus som ett produkt med antall 3 og pris 897 kr (299 × 3), i stedet for tre like rader. For nye produkter bruker jeg push(); for produkter som allerede finnes øker jeg antall.
 
-Utfordring 3: Tom handlekurv
+## Utfordring 3: Tom handlekurv
+
+<img width="488" height="106" alt="image" src="https://github.com/user-attachments/assets/48575d84-09aa-47dc-9e14-a53eaa8c505f" />
+
+
+<img width="413" height="188" alt="image" src="https://github.com/user-attachments/assets/e58bbf39-2e31-48b0-8cae-43e542a20944" />
+
 
 Hvis handlekurven er tom, viser popupen teksten «Handlekurven er tom.» i stedet for en tom liste og totalpris.
 
@@ -403,6 +465,10 @@ if (handlekurv.length === 0) {
 }
 
 ## Utfordring 4: Tøm hele handlekurven
+
+<img width="651" height="108" alt="image" src="https://github.com/user-attachments/assets/f2e3f0c7-af20-4a28-9c04-e76930bb31b2" />
+
+<img width="405" height="173" alt="image" src="https://github.com/user-attachments/assets/ab737067-437e-436c-95f2-9c6ad0252db4" />
 
 Jeg laget knappen «Tøm handlekurv». Når den klikkes, tømmes arrayet, listen oppdateres og telleren settes tilbake til 0.
 
@@ -442,6 +508,10 @@ Denne delen lærte meg hvordan arrays, funksjoner og DOM kan brukes sammen for �
 
 ## Steg 1–3: Søkefelt, visProdukter() og DOM
 
+<img width="488" height="130" alt="image" src="https://github.com/user-attachments/assets/070dd4f5-2d57-46c6-addc-e3ae5fd787d3" />
+
+<img width="535" height="89" alt="image" src="https://github.com/user-attachments/assets/bfbdd90a-2759-428a-8a4b-2c029548cb01" />
+
 Jeg la et søkefelt over produktcontaineren og hentet det med getElementById(). Jeg brukte den eksisterende visProdukter(liste)-funksjonen, slik at samme funksjon kan vise alle produkter eller en filtrert liste.
 
 <input type="text" id="sokefelt" placeholder="Søk etter produkter...">
@@ -456,29 +526,58 @@ const container = document.getElementById("produktContainer");
 
 ## Steg 4–5: input-event og toLowerCase()
 
+<img width="625" height="116" alt="image" src="https://github.com/user-attachments/assets/477ea0a9-f7f3-4192-b33b-c5a5eef4c524" />
+
+<img width="827" height="423" alt="image" src="https://github.com/user-attachments/assets/39d21982-74e5-48ca-81b0-2e82c8642641" />
+
 Jeg brukte addEventListener("input") slik at søket reagerer mens brukeren skriver, uten Enter. Jeg leste sokefelt.value og brukte toLowerCase() så Mus, mus og MUS gir samme resultat.
 
 ## Steg 6–7: filter(), includes() og visProdukter(resultat)
+
+<img width="607" height="205" alt="image" src="https://github.com/user-attachments/assets/610e7380-ec25-4c3a-8e3e-87c08f899d8a" />
+
+<img width="660" height="407" alt="image" src="https://github.com/user-attachments/assets/e10823fb-ca4a-452d-adf6-3bd81bb391e7" />
 
 Jeg brukte filter() til å lage et nytt array med produkter som passer, og includes() til å kontrollere om et produktnavn inneholder søketeksten. Deretter viser visProdukter(resultat) bare treffene.
 
 ## Steg 8: Ingen produkter funnet
 
+<img width="619" height="142" alt="image" src="https://github.com/user-attachments/assets/03000dbe-a5df-4949-bf27-02fce6e45039" />
+
+<img width="955" height="166" alt="image" src="https://github.com/user-attachments/assets/7645e883-682d-46df-ba57-acf109b0ae81" />
+
 Jeg la til en melding som vises når resultat.length === 0. Da står det «Ingen produkter funnet.» i stedet for produktkort.
 
 ## Utfordring 1: Søk i beskrivelse
+
+<img width="550" height="104" alt="image" src="https://github.com/user-attachments/assets/a25f58cf-6149-431c-b979-34acac04b73e" />
+
+<img width="959" height="405" alt="image" src="https://github.com/user-attachments/assets/141d8656-1117-4da7-8e7d-db636b78d1c0" />
 
 Jeg utvidet søket med || (ELLER) slik at produkter finnes hvis søkeordet står i navnet eller beskrivelsen. Testen «trådløs» viste Mus og Hodetelefoner.
 
 ## Utfordring 2: Søk etter kategori
 
+<img width="522" height="104" alt="image" src="https://github.com/user-attachments/assets/e15fa65f-c962-4a7a-bb58-a14cfde75039" />
+
+<img width="959" height="419" alt="image" src="https://github.com/user-attachments/assets/fa1714e5-3f17-4796-829e-f4e2c918b0a5" />
+
 Jeg la også kategori til søkebetingelsen. Søket «Tilbehør» viste Tastatur, Mus og Hodetelefoner, men ikke Skjerm.
 
-Utfordring 3: Vis antall treff
+## Utfordring 3: Vis antall treff
+
+<img width="646" height="119" alt="image" src="https://github.com/user-attachments/assets/7f652b94-8b75-44a3-8463-8b71d22c6a38" />
+
+<img width="956" height="131" alt="image" src="https://github.com/user-attachments/assets/f830ec41-dae8-4421-8fb1-415844625528" />
+
 
 Jeg oppdaterte HTML-elementet antallTreff med resultat.length. Søket «Tilbehør» viste «3 produkter funnet».
 
 ## Utfordring 4: Søk og handlekurv sammen
+
+<img width="537" height="126" alt="image" src="https://github.com/user-attachments/assets/4665742b-e4e6-47b0-b991-d008d8123703" />
+
+<img width="941" height="382" alt="image" src="https://github.com/user-attachments/assets/aab1b322-1dad-4ecb-b9de-9458817f3499" />
 
 Jeg testet at kjøpsknappen fortsatt fungerer etter at produktkortene tegnes på nytt av innerHTML. Siden hvert nytt kort får onclick="leggTilHandlekurv(id)", kunne jeg søke etter Mus, klikke «Køb» og se Mus i handlekurven.
 
@@ -515,6 +614,10 @@ sokefelt.addEventListener("input", () => {
 });
 
 ## Testing av søkefunksjonen
+
+<img width="661" height="187" alt="image" src="https://github.com/user-attachments/assets/99322a82-36cc-436d-8d14-1503c25fadbe" />
+
+<img width="959" height="205" alt="image" src="https://github.com/user-attachments/assets/27528c6a-9421-45c2-9703-eef328ed668f" />
 
 Søk eller handling
 
@@ -561,6 +664,11 @@ Jeg testet også at handlekurven fortsatt fungerte etter at produktene hadde bli
 Denne oppgaven lærte meg hvordan JavaScript kan behandle informasjon fra brukeren og vise forskjellige resultater uten å laste nettsiden på nytt.
 
 ### Utfordringer og feilsøking under prosjektet
+
+<img width="635" height="194" alt="image" src="https://github.com/user-attachments/assets/62de803f-2e97-483b-8b90-9d12a234abf4" />
+
+<img width="381" height="172" alt="image" src="https://github.com/user-attachments/assets/7a6e654a-ac74-4566-b967-45d70b20fb21" />
+
 
 Under arbeidet møtte jeg forskjellige utfordringer med HTML, CSS og JavaScript.
 
