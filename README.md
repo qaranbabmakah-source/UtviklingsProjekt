@@ -259,8 +259,11 @@ if (produkt.lager > 0) {
 
 ## Ekstraoppgave: Les mer-knapp og kategorier
 
-<img width="606" height="214" alt="image" src="https://github.com/user-attachments/assets/d43f0cd5-b784-4f69-b7a4-506adc3f9dd5" />
-<img width="98" height="79" alt="image" src="https://github.com/user-attachments/assets/92eeeec6-4502-48ec-a295-8c67aaebfedb" />
+<img width="664" height="83" alt="image" src="https://github.com/user-attachments/assets/8449b0c0-e100-49ac-84fa-bf41ad882a46" />
+
+<img width="761" height="188" alt="image" src="https://github.com/user-attachments/assets/8e81d84d-d196-429d-8182-ca3cb30ad19d" />
+
+<img width="905" height="442" alt="image" src="https://github.com/user-attachments/assets/289357a1-b11c-44a1-9294-c4e49274bc12" />
 
 Jeg la til en grønn «Les mer»-knapp og beholdt en blå kjøpsknapp på produktkortene. Jeg la også til kategoriene Tilbehør og Skjermer og viste kategorien på kortet. Med forEach() og if telte jeg hvor mange produkter som hadde kategorien Tilbehør: tre.
 
