@@ -721,3 +721,505 @@ Hvis jeg skulle utviklet prosjektet videre, ville jeg jobbet mer med responsivt 
 
 Gjennom prosjektet har jeg blitt tryggere på å lese kode, forstå feilmeldinger og finne løsninger når noe ikke fungerer som forventet.
 
+## Del 5 – JavaScript: Filtrering av produkter
+
+## Steg 1 – legg til kategori på produktene
+
+<img width="629" height="165" alt="image" src="https://github.com/user-attachments/assets/3d2b9912-ac9c-4717-933d-c70446ef69bd" />
+
+<img width="949" height="433" alt="image" src="https://github.com/user-attachments/assets/a7506a71-bc50-47b0-b04a-1f3cd3a35831" />
+
+Jeg brukte `js/produkter.js` til å lagre fire produkter som JavaScript-objekter. Hvert produkt har en `kategori`, slik at produktene kan filtreres.
+
+ Kodeutdrag
+
+```javascript
+{
+    id: 1,
+    navn: "Tastatur",
+    pris: 599,
+    kategori: "Tilbehør"
+},
+{
+    id: 3,
+    navn: "Skjerm",
+    pris: 2499,
+    kategori: "Skjermer"
+}
+```
+
+Testing og resultat
+
+Jeg kontrollerte at alle fire produktene hadde en kategori, og at kategoriene ble vist riktig på nettsiden.
+
+Jeg lærte at produkter med samme kategori kan vises sammen ved hjelp av JavaScript og `filter()`.
+
+## Steg 2 – lag knapper for filtrering
+
+<img width="635" height="223" alt="image" src="https://github.com/user-attachments/assets/fbaf4766-f3ba-4e52-b904-2213728ee430" />
+
+<img width="926" height="467" alt="image" src="https://github.com/user-attachments/assets/4b3f4901-3149-493e-8a56-9b72eb07ec1b" />
+
+hva gjorde jeg?
+
+Jeg laget fire filterknapper i `index.html`: Vis alle, Tilbehør, Skjermer og Tastatur.
+
+Jeg brukte `class="filterKnapp"` og `data-kategori` slik at hver knapp har informasjon om hvilken kategori den representerer.
+
+Jeg beholdt også `id`-ene fordi JavaScript-koden min allerede bruker dem.
+
+Kodeutdrag fra index.html
+
+```html
+<button id="visAlle" class="filterKnapp" data-kategori="Alle">Vis alle</button>
+<button id="visTilbehor" class="filterKnapp" data-kategori="Tilbehør">Tilbehør</button>
+<button id="visSkjermer" class="filterKnapp" data-kategori="Skjermer">Skjermer</button>
+<button id="visTastatur" class="filterKnapp" data-kategori="Tastatur">Tastatur</button>
+```
+
+Testing og resultat
+
+Jeg testet alle fire knappene i nettleseren. Tilbehør viste tre produkter, Skjermer viste bare Skjerm, Tastatur viste bare Tastatur, og Vis alle viste alle fire produktene.
+
+Jeg lærte hvordan `data-kategori` kan lagre informasjon i HTML-elementer som JavaScript kan hente senere.
+
+## Steg 3 – finn alle filterknappene
+
+<img width="716" height="86" alt="image" src="https://github.com/user-attachments/assets/056bb19d-3b91-4b8b-b425-75d8a2058026" />
+
+<img width="443" height="425" alt="image" src="https://github.com/user-attachments/assets/0754d5d6-d964-41ce-bbcd-42403a763609" />
+
+Jeg brukte `querySelectorAll()` i `js/script.js` for å hente alle knappene med klassen `filterKnapp`.
+
+Kode
+
+```javascript
+const filterKnapper = document.querySelectorAll(".filterKnapp");
+console.log(filterKnapper);
+```
+
+Testing og resultat
+
+Jeg åpnet Console i nettleseren og fikk `NodeList(4)`. Dette bekreftet at JavaScript fant alle fire filterknappene: Vis alle, Tilbehør, Skjermer og Tastatur.
+
+Jeg lærte hvordan `querySelectorAll()` kan hente flere HTML-elementer med samme klasse.
+
+## Steg 4 – registrer hvilken knapp brukeren trykker på
+
+<img width="644" height="102" alt="image" src="https://github.com/user-attachments/assets/14f76e57-d915-4355-a939-6e0bf5ca32b1" />
+
+<img width="451" height="273" alt="image" src="https://github.com/user-attachments/assets/bbb65fa8-41b4-4cd0-9955-ac4aead14592" />
+
+Hva gjorde jeg?
+
+Jeg brukte forEach() for å gå gjennom alle filterknappene og addEventListener("click") for å registrere når brukeren klikker på en knapp.
+
+Kode fra js/script.js:
+
+filterKnapper.forEach(knapp => {
+    knapp.addEventListener("click", () => {
+        console.log("Filterknapp trykket");
+    });
+});
+
+Testing og resultat
+
+Jeg testet ved å klikke på filterknappen Tilbehør. Console viste meldingen Filterknapp trykket, som bekreftet at klikkhendelsen fungerte.
+
+Jeg lærte hvordan forEach() og addEventListener() kan brukes sammen for å registrere klikk på flere knapper.
+
+## Steg 5 – finn kategorien på knappen
+
+<img width="596" height="120" alt="image" src="https://github.com/user-attachments/assets/62e834b2-304b-4f5f-8e44-e7c306ed61d3" />
+
+<img width="431" height="286" alt="image" src="https://github.com/user-attachments/assets/d588625a-3114-4aca-ab95-0f7a4a4e6acd" />
+
+Hva gjorde jeg?
+
+Jeg brukte dataset.kategori for å hente kategorien fra filterknappen som brukeren klikker på. Hver knapp har en data-kategori-verdi i HTML.
+
+Kode fra js/script.js:
+
+filterKnapper.forEach(knapp => {
+    knapp.addEventListener("click", () => {
+        let kategori = knapp.dataset.kategori;
+        console.log("Valgt kategori:", kategori);
+    });
+});
+
+Testing og resultat
+
+Jeg klikket på knappen «Tilbehør» og kontrollerte Console. Den viste Valgt kategori: Tilbehør.
+
+Jeg lærte hvordan JavaScript kan bruke dataset til å hente informasjon fra HTML-elementer.
+
+## Steg 6 – filtrer produktarrayet
+
+<img width="644" height="164" alt="image" src="https://github.com/user-attachments/assets/7753e4c2-78a3-4a7e-8f32-c93b1236aa5e" />
+
+<img width="454" height="351" alt="image" src="https://github.com/user-attachments/assets/c8c3c987-d5c3-40e9-8b97-407da1e96ada" />
+
+Hva gjorde jeg?
+
+Jeg brukte filter() i JavaScript for å finne produktene som har samme kategori som filterknappen brukeren klikker på.
+
+Kode fra js/script.js:
+
+let filtrerteProdukter = produkter.filter(
+    produkt => produkt.kategori === kategori
+);
+console.log(filtrerteProdukter);
+
+Testing og resultat
+
+Jeg klikket på «Tilbehør» og kontrollerte resultatet i Console. JavaScript viste Array(3), som inneholdt Tastatur, Mus og Hodetelefoner.
+
+Jeg lærte at filter() lager et nytt array med produktene som oppfyller betingelsen.
+
+## Steg 7 – vis de filtrerte produktene
+
+<img width="593" height="137" alt="image" src="https://github.com/user-attachments/assets/374ad359-5632-464e-8f2b-93f922059166" />
+
+<img width="959" height="445" alt="image" src="https://github.com/user-attachments/assets/a548307b-1f94-4d44-9201-296ea1ee22cd" />
+
+Hva gjorde jeg?
+
+Jeg brukte funksjonen visProdukter() for å vise produktene som ble funnet med filter(). Når brukeren klikker på en filterknapp, oppdateres produktkortene automatisk.
+
+Jeg la også til en betingelse for «Vis alle», slik at alle fire produktene vises igjen.
+
+Kode fra js/script.js:
+
+let filtrerteProdukter = kategori === "Alle"
+    ? produkter
+    : produkter.filter(produkt => produkt.kategori === kategori);
+
+console.log(filtrerteProdukter);
+visProdukter(filtrerteProdukter);
+
+Testing og resultat
+
+Jeg testet filterknappene i nettleseren:
+
+Vis alle: Alle fire produktene ble vist.
+
+Tilbehør: Tastatur, Mus og Hodetelefoner ble vist.
+
+Skjermer: Bare Skjerm ble vist.
+
+Tastatur: Bare Tastatur ble vist ved hjelp av en egen knappfunksjon.
+
+Jeg lærte hvordan filter() og visProdukter() kan brukes sammen for å oppdatere innholdet på nettsiden uten å laste siden på nytt.
+
+## Steg 8 – få Alle-knappen til å fungere
+
+<img width="479" height="145" alt="image" src="https://github.com/user-attachments/assets/84988635-b21f-4a4a-9d75-b2e1e27ce6e6" />
+
+<img width="958" height="455" alt="image" src="https://github.com/user-attachments/assets/bf1bebcc-deaa-49ae-ba1c-9c57a31df62c" />
+
+Hva gjorde jeg?
+
+Jeg brukte if/else for å få «Vis alle»-knappen til å fungere. Siden ingen produkter har kategorien «Alle», måtte denne knappen behandles annerledes.
+
+Kode fra js/script.js:
+
+if (kategori === "Alle") {
+    visProdukter(produkter);
+} else {
+    let filtrerteProdukter = produkter.filter(
+        produkt => produkt.kategori === kategori
+    );
+    visProdukter(filtrerteProdukter);
+}
+
+Testing og resultat
+
+Jeg testet «Vis alle» etter å ha filtrert produktene. Alle fire produktene kom tilbake på nettsiden.
+
+Jeg lærte hvordan if/else kan brukes til å behandle forskjellige valg i JavaScript.
+
+
+## Steg 9 – test filtreringen
+
+<img width="943" height="439" alt="image" src="https://github.com/user-attachments/assets/372da5ed-0d9d-4b40-ae80-2402176cf57d" />
+
+<img width="958" height="461" alt="image" src="https://github.com/user-attachments/assets/cf929222-cbb6-44cd-a747-4b891cdab26b" />
+
+Hva gjorde jeg?
+
+Jeg testet alle filterknappene for å kontrollere at produktfiltreringen fungerte riktig.
+
+Testing og resultat
+
+Tilbehør: Tastatur, Mus og Hodetelefoner ble vist.
+
+Skjermer: Bare Skjerm ble vist.
+
+Tastatur: Bare Tastatur ble vist.
+
+Vis alle: Alle fire produktene kom tilbake.
+
+Kode fra js/script.js:
+
+if (kategori === "Alle") {
+    visProdukter(produkter);
+} else {
+    let filtrerteProdukter = produkter.filter(
+        produkt => produkt.kategori === kategori
+    );
+    visProdukter(filtrerteProdukter);
+}
+
+Hva lærte jeg?
+
+Jeg lærte å teste forskjellige filtervalg og kontrollere at filter() og visProdukter() viser riktige produkter. Testene viste at filtreringen fungerer som forventet.
+
+## Utfordring 1 – bruk nedtrekksmeny
+
+<img width="549" height="133" alt="image" src="https://github.com/user-attachments/assets/a642d406-eb38-4f73-9a2b-99359bbda91a" />
+
+<img width="959" height="377" alt="image" src="https://github.com/user-attachments/assets/81be92a7-69c7-446c-b32c-77efb7e7e5c3" />
+
+Hva gjorde jeg?
+
+Jeg laget en nedtrekksmeny i index.html slik at brukeren kan filtrere produkter etter kategori. Jeg brukte select og option i HTML og change-eventet i JavaScript.
+
+Kode fra index.html:
+
+<select id="kategoriFilter">
+    <option value="Alle">Alle</option>
+    <option value="Tilbehør">Tilbehør</option>
+    <option value="Tastatur">Tastatur</option>
+    <option value="Skjermer">Skjermer</option>
+</select>
+
+Kode fra js/script.js:
+
+const kategoriFilter = document.getElementById("kategoriFilter");
+
+kategoriFilter.addEventListener("change", () => {
+    let kategori = kategoriFilter.value;
+
+    if (kategori === "Alle") {
+        visProdukter(produkter);
+    } else if (kategori === "Tastatur") {
+        visProdukter(produkter.filter(produkt => produkt.navn === "Tastatur"));
+    } else {
+        let filtrerteProdukter = produkter.filter(
+            produkt => produkt.kategori === kategori
+        );
+        visProdukter(filtrerteProdukter);
+    }
+});
+
+Testing og resultat
+
+Jeg testet alle valgene i nedtrekksmenyen. «Alle» viste fire produkter, «Tilbehør» viste tre, «Tastatur» viste bare Tastatur, og «Skjermer» viste bare Skjerm.
+
+Jeg lærte hvordan change, value og filter() kan brukes sammen for å filtrere produkter med en nedtrekksmeny.
+
+## Utfordring 2 – filtrer på pris
+
+<img width="563" height="102" alt="image" src="https://github.com/user-attachments/assets/2bf55c93-ba94-46fb-a151-5062770bce15" />
+
+<img width="608" height="185" alt="image" src="https://github.com/user-attachments/assets/5a17f8db-54d3-48b1-9f28-b0278482674f" />
+
+Hva gjorde jeg?
+
+Jeg laget prisfiltrering i nettbutikken ved hjelp av JavaScript. Brukeren kan velge mellom «Vis alle», «Under 500 kr», «500–1000 kr» og «Over 1000 kr».
+
+Jeg brukte filter() for å finne produkter som passer til den valgte prisklassen, og visProdukter() for å vise resultatene på nettsiden.
+
+Kode fra index.html:
+
+<button id="visAlle">Vis alle</button>
+<button id="visBillige">Under 500 kr</button>
+<button id="visMellomPris">500–1000 kr</button>
+<button id="visOver1000">Over 1000 kr</button>
+
+Kode fra js/script.js:
+
+document.getElementById("visMellomPris").addEventListener("click", () => {
+    const resultat = produkter.filter(produkt =>
+        produkt.pris >= 500 && produkt.pris <= 1000
+    );
+    visProdukter(resultat);
+});
+
+document.getElementById("visOver1000").addEventListener("click", () => {
+    const resultat = produkter.filter(produkt => produkt.pris > 1000);
+    visProdukter(resultat);
+});
+
+Testing og resultat
+
+Jeg testet prisfiltreringen i nettleseren:
+
+Under 500 kr: Mus (299 kr).
+
+500–1000 kr: Tastatur (599 kr) og Hodetelefoner (799 kr).
+
+Over 1000 kr: Skjerm (2499 kr).
+
+Vis alle: Alle fire produktene vises.
+
+Jeg lærte å bruke sammenligningsoperatorene <, >= og <= sammen med filter() for å filtrere produkter etter pris.
+
+Resultat: Prisfiltreringen fungerer, og produktlisten oppdateres når brukeren velger en prisklasse.
+
+
+## Utfordring 3 – kombiner søk og filtrering
+
+<img width="584" height="228" alt="image" src="https://github.com/user-attachments/assets/00956638-59c8-42d4-9e83-0883b871e72b" />
+
+<img width="954" height="451" alt="image" src="https://github.com/user-attachments/assets/5160e8d2-8e6d-402f-9ce8-2845fabc4825" />
+
+Hva gjorde jeg?
+
+Jeg kombinerte søkefunksjonen med kategorifiltrering i js/script.js. Brukeren kan velge en kategori i nedtrekksmenyen og deretter søke etter et produkt.
+
+Jeg brukte filter(), includes() og toLowerCase() for å finne produkter som passer både med kategorien og søketeksten.
+
+Kodeutdrag fra js/script.js:
+
+const sok = sokefelt.value.toLowerCase();
+const valgtKategori = document.getElementById("kategoriFilter").value;
+
+const resultat = produkter.filter(produkt =>
+    (valgtKategori === "Alle" ||
+     produkt.kategori === valgtKategori ||
+     (valgtKategori === "Tastatur" && produkt.navn === "Tastatur")) &&
+    (
+        produkt.navn.toLowerCase().includes(sok) ||
+        produkt.beskrivelse.toLowerCase().includes(sok) ||
+        produkt.kategori.toLowerCase().includes(sok)
+    )
+);
+
+Testing og resultat
+
+Jeg valgte kategorien «Tilbehør» i nedtrekksmenyen og skrev «mus» i søkefeltet. Da ble bare produktet Mus (299 kr) vist.
+
+Dette viste at søk og kategorifiltrering fungerer sammen.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan && og || kan brukes sammen med filter() for å kombinere flere betingelser. Jeg lærte også å bruke toLowerCase() for å søke uavhengig av store og små bokstaver.
+
+## Tenk gjennom løsningen
+
+Hvor ligger kategorien?
+
+Kategorien er lagret i hvert produktobjekt i js/produkter.js, for eksempel:
+
+kategori: "Tilbehør"
+
+Hvordan vet JavaScript hvilken kategori brukeren velger?
+
+Jeg brukte data-kategori på filterknappene og dataset.kategori i JavaScript. I nedtrekksmenyen brukte jeg kategoriFilter.value.
+
+Hva gjør filter()?
+
+filter() lager et nytt array med produktene som oppfyller betingelsen.
+
+Kode fra prosjektet:
+
+let filtrerteProdukter = produkter.filter(
+    produkt => produkt.kategori === kategori
+);
+
+visProdukter(filtrerteProdukter);
+
+Hvorfor bruker jeg visProdukter()?
+
+Jeg bruker visProdukter() for å oppdatere nettsiden slik at bare produktene som passer med filteret, blir vist.
+
+Hva har jeg lært?
+
+Jeg har lært hvordan JavaScript kan hente kategorier fra HTML, filtrere produktobjekter og vise resultatene dynamisk. Jeg har også lært å kombinere kategorifiltrering med søk.
+
+Hovedideen:
+
+Brukeren velger kategori → JavaScript henter verdien → filter() finner riktige produkter → visProdukter() viser resultatet.
+
+## Extraoppgave – Jeg gjorde selv
+
+<img width="705" height="408" alt="image" src="https://github.com/user-attachments/assets/d6004978-8744-4287-9297-fca300d00240" />
+
+<img width="698" height="391" alt="image" src="https://github.com/user-attachments/assets/71f1aaf7-63e4-477f-bf3b-5476bcd2af6b" />
+
+<img width="958" height="449" alt="image" src="https://github.com/user-attachments/assets/29d9f02c-5417-4497-b3bb-9f1feec59fe4" />
+
+Hva gjorde jeg?
+
+Jeg valgte å gjøre en ekstraoppgave på egen hånd for å forbedre designet på nettbutikken min.
+
+Jeg ga filterknappene forskjellige farger ved hjelp av CSS. Jeg gjorde også knappene større, la til avrundede hjørner og en hover-effekt.
+
+I tillegg endret jeg størrelsen på søkefeltet og ga det en blå ramme.
+
+Kodeutdrag fra styles.css:
+
+#visAlle {
+    background-color: #2563eb;
+    color: white;
+}
+
+#visBillige {
+    background-color: #16a34a;
+    color: white;
+}
+
+#visMellomPris {
+    background-color: #f59e0b;
+    color: white;
+}
+
+#visOver1000 {
+    background-color: #dc2626;
+    color: white;
+}
+
+#kategoriFilter {
+    background-color: #db2777;
+    color: white;
+}
+
+#sokefelt {
+    display: inline-block;
+    width: 180px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 2px solid #60a5fa;
+    border-radius: 9px;
+}
+
+Testing og resultat
+
+Jeg testet endringene i nettleseren og justerte størrelsene flere ganger til jeg fikk et design jeg var fornøyd med.
+
+Resultatet ble en mer fargerik og oversiktlig nettbutikk.
+
+Hva lærte jeg?
+
+Jeg lærte å bruke CSS mer selvstendig og fikk bedre forståelse av hvordan farger, størrelser, avstander og hover-effekter påvirker utseendet på nettsiden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
