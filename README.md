@@ -1204,6 +1204,863 @@ Hva lærte jeg?
 
 Jeg lærte å bruke CSS mer selvstendig og fikk bedre forståelse av hvordan farger, størrelser, avstander og hover-effekter påvirker utseendet på nettsiden.
 
+## Javascript – sortering av produkter
+
+<img width="652" height="136" alt="image" src="https://github.com/user-attachments/assets/8c995ada-3e87-4d72-8796-9e87b627b793" />
+
+<img width="650" height="243" alt="image" src="https://github.com/user-attachments/assets/2390d4c9-156e-4f48-b9c7-b5c3d15e53f0" />
+
+<img width="957" height="483" alt="image" src="https://github.com/user-attachments/assets/3e783414-7369-47f3-bd83-edf1f7cbb383" />
+
+Hva gjorde jeg?
+
+Jeg laget en nedtrekksmeny i index.html med fire sorteringsvalg:
+
+A til Å
+
+Å til A
+
+Lavest pris først
+
+Høyest pris først
+
+Deretter brukte jeg JavaScript i js/script.js for å sortere produktene når brukeren velger et alternativ.
+
+Jeg brukte sort(), localeCompare() og visProdukter() for å endre rekkefølgen på produktkortene.
+
+Kode fra index.html:
+
+<select id="sortering">
+    <option value="standard">Sorter produkter</option>
+    <option value="az">A til Å</option>
+    <option value="za">Å til A</option>
+    <option value="lavest">Lavest pris først</option>
+    <option value="hoyest">Høyest pris først</option>
+</select>
+
+Kode fra js/script.js:
+
+const sortering = document.getElementById("sortering");
+
+sortering.addEventListener("change", () => {
+    const valg = sortering.value;
+    const sorterteProdukter = [...produkter];
+
+    if (valg === "az") {
+        sorterteProdukter.sort((a, b) =>
+            a.navn.localeCompare(b.navn, "nb")
+        );
+    } else if (valg === "za") {
+        sorterteProdukter.sort((a, b) =>
+            b.navn.localeCompare(a.navn, "nb")
+        );
+    } else if (valg === "lavest") {
+        sorterteProdukter.sort((a, b) => a.pris - b.pris);
+    } else if (valg === "hoyest") {
+        sorterteProdukter.sort((a, b) => b.pris - a.pris);
+    }
+
+    visProdukter(sorterteProdukter);
+});
+
+Forklaring av koden
+
+Jeg brukte addEventListener("change") for å oppdage når brukeren velger en ny sortering.
+
+sort() sorterer produktene, mens localeCompare() sammenligner produktnavnene i alfabetisk rekkefølge.
+
+Jeg brukte [...produkter] for å lage en kopi av produktarrayet, slik at det opprinnelige arrayet ikke ble endret.
+
+Til slutt brukte jeg visProdukter(sorterteProdukter) for å vise produktene i riktig rekkefølge.
+
+Testing og resultat
+
+Jeg testet alle fire sorteringsvalg i nettleseren:
+
+A til Å: Hodetelefoner → Mus → Skjerm → Tastatur.
+
+Å til A: Tastatur → Skjerm → Mus → Hodetelefoner.
+
+Lavest pris først: Mus (299 kr) → Tastatur (599 kr) → Hodetelefoner (799 kr) → Skjerm (2499 kr).
+
+Høyest pris først: Skjerm (2499 kr) → Hodetelefoner (799 kr) → Tastatur (599 kr) → Mus (299 kr).
+
+Alle fire sorteringsvalgene fungerte som forventet.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan sort() kan brukes til å sortere produkter etter navn og pris, og hvordan localeCompare() brukes til alfabetisk sortering.
+
+Jeg lærte også hvorfor det er nyttig å lage en kopi av et array før sortering, og hvordan visProdukter() kan brukes til å oppdatere rekkefølgen på produktene på nettsiden.
+
+## Hvordan fungerer a og b?
+
+Når JavaScript bruker sort(), sammenlignes to produkter om gangen. a representerer ett produkt, og b representerer et annet.
+
+Kode fra js/script.js:
+
+sorterteProdukter.sort((a, b) => a.pris - b.pris);
+
+Hvis a er Mus (299 kr) og b er Skjerm (2499 kr), blir sammenligningen:
+
+299 - 2499 // -2200
+
+Et negativt resultat betyr at Mus skal komme før Skjerm.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan a og b brukes til å sammenligne produkter, og hvordan sort() kan sortere dem fra lavest til høyest pris.
+
+## Hvordan bestemmer sort() rekkefølgen?
+
+Jeg brukte sort() i JavaScript for å sortere produktene etter pris.
+
+Når JavaScript sammenligner to produkter, brukes a og b til å bestemme hvilket produkt som skal komme først.
+
+Kode fra js/script.js:
+
+// Lavest pris først
+sorterteProdukter.sort((a, b) => a.pris - b.pris);
+
+// Høyest pris først
+sorterteProdukter.sort((a, b) => b.pris - a.pris);
+
+Forklaring
+
+Hvis a er Mus (299 kr) og b er Skjerm (2499 kr), blir resultatet:
+
+299 - 2499 // -2200
+
+Når resultatet er negativt, kommer a før b. Når resultatet er positivt, kommer b før a. Hvis resultatet er 0, regnes produktene som like i denne sammenligningen.
+
+Testing og resultat
+
+Jeg testet begge sorteringsvalgene i nettleseren.
+
+Lavest pris først: Mus → Tastatur → Hodetelefoner → Skjerm.
+
+Høyest pris først: Skjerm → Hodetelefoner → Tastatur → Mus.
+
+Hva lærte jeg?
+
+Jeg lærte at a.pris - b.pris sorterer fra lavest til høyest pris, mens b.pris - a.pris sorterer fra høyest til lavest pris.
+
+
+## Eksempel – Sortering etter pris
+
+Jeg testet hvordan sort() endrer rekkefølgen på produktene uten å endre produktinformasjonen.
+
+Kodeutdrag fra js/script.js:
+
+// Lavest pris først
+sorterteProdukter.sort((a, b) => a.pris - b.pris);
+
+// Høyest pris først
+sorterteProdukter.sort((a, b) => b.pris - a.pris);
+
+Testing og resultat
+
+Jeg brukte de fire produktene i nettbutikken min.
+
+Lavest pris først:
+
+Mus – 299 kr
+
+Tastatur – 599 kr
+
+Hodetelefoner – 799 kr
+
+Skjerm – 2499 kr
+
+Høyest pris først:
+
+Skjerm – 2499 kr
+
+Hodetelefoner – 799 kr
+
+Tastatur – 599 kr
+
+Mus – 299 kr
+
+Hva lærte jeg?
+
+Jeg lærte at sort() endrer rekkefølgen på elementene i et array. Produktene beholder samme navn, pris og andre egenskaper, men vises i en annen rekkefølge på nettsiden.
+
+
+## Steg 1 – lag en nedtrekksmeny
+
+<img width="641" height="118" alt="image" src="https://github.com/user-attachments/assets/bf50f393-ee5d-4ec7-a696-c8bd567e14bc" />
+
+<img width="944" height="460" alt="image" src="https://github.com/user-attachments/assets/731df779-8db5-49c0-9f93-a03f4205d801" />
+
+Hva gjorde jeg?
+
+Jeg laget en nedtrekksmeny i index.html slik at brukeren kan velge hvordan produktene skal sorteres.
+
+Jeg la til fire alternativer: A til Å, Å til A, Lavest pris først og Høyest pris først.
+
+Kode fra index.html:
+
+<select id="sortering">
+    <option value="standard">Sorter produkter</option>
+    <option value="az">A til Å</option>
+    <option value="za">Å til A</option>
+    <option value="lavest">Lavest pris først</option>
+    <option value="hoyest">Høyest pris først</option>
+</select>
+
+Testing og resultat
+
+Jeg åpnet nettsiden og kontrollerte at nedtrekksmenyen viste alle fire sorteringsalternativene. Jeg testet også valgene og kontrollerte at produktene ble sortert riktig.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan HTML-elementene select og option brukes til å lage en nedtrekksmeny som kan kobles til JavaScript.
+
+
+## Steg 2 – finn nedtrekksmenyen med JavaScript
+
+<img width="490" height="301" alt="image" src="https://github.com/user-attachments/assets/5078d503-a19f-4eba-9221-8389acc74137" />
+
+<img width="943" height="506" alt="image" src="https://github.com/user-attachments/assets/f3dd1790-a266-4b18-bf65-f7246a7d5ade" />
+
+Hva gjorde jeg?
+
+Jeg brukte document.getElementById() i js/script.js for å hente nedtrekksmenyen med ID-en sortering.
+
+Deretter brukte jeg addEventListener("change") for å registrere når brukeren velger et nytt sorteringsalternativ.
+
+Kodeutdrag fra js/script.js:
+
+const sortering = document.getElementById("sortering");
+
+sortering.addEventListener("change", () => {
+    const valg = sortering.value;
+    console.log("Valgt sortering:", valg);
+});
+
+Dette er et forenklet eksempel. I den fullstendige løsningen bruker jeg verdien til å sortere produktene.
+
+Testing og resultat
+
+Jeg testet alle fire valgene i nedtrekksmenyen og kontrollerte at produktene endret rekkefølge riktig.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan getElementById() finner et HTML-element, og hvordan change-eventet reagerer når brukeren velger et nytt alternativ.
+
+
+## Steg 3 – finn ut hva brukeren valgte
+
+<img width="510" height="254" alt="image" src="https://github.com/user-attachments/assets/d35acfc8-cda1-455e-9138-656ef18b4b81" />
+
+<img width="950" height="483" alt="image" src="https://github.com/user-attachments/assets/fba046e6-d7b6-43f4-aef8-a6bf51476c69" />
+
+Hva gjorde jeg?
+
+Jeg brukte sortering.value i JavaScript for å hente verdien brukeren velger fra nedtrekksmenyen.
+
+Når brukeren velger et alternativ, bruker programmet verdien til å bestemme hvordan produktene skal sorteres.
+
+Kode fra index.html:
+
+<option value="lavest">Lavest pris først</option>
+<option value="hoyest">Høyest pris først</option>
+
+Kodeutdrag fra js/script.js:
+
+const sortering = document.getElementById("sortering");
+
+sortering.addEventListener("change", () => {
+    const valg = sortering.value;
+    // Verdien brukes videre til å sortere produktene.
+});
+
+Testing og resultat
+
+Jeg valgte «Lavest pris først» i nedtrekksmenyen. JavaScript hentet verdien lavest, og produktene ble sortert fra lavest til høyest pris.
+
+Hva lærte jeg?
+
+Jeg lærte forskjellen mellom teksten brukeren ser i en nedtrekksmeny, og verdien JavaScript mottar gjennom value.
+
+## Steg 4 – sorter etter pris
+
+<img width="950" height="483" alt="image" src="https://github.com/user-attachments/assets/4c1e026e-3309-4fe4-97fb-7a1ab115e0b2" />
+
+Hva gjorde jeg?
+
+Jeg brukte JavaScript-metoden sort() for å sortere produktene etter pris.
+
+Jeg laget først en kopi av produktarrayet med [...produkter], slik at den opprinnelige rekkefølgen ikke ble endret.
+
+Deretter brukte jeg a.pris - b.pris for å sortere produktene fra lavest til høyest pris.
+
+Kodeutdrag fra js/script.js:
+
+const sorterteProdukter = [...produkter];
+
+sorterteProdukter.sort((a, b) => a.pris - b.pris);
+
+visProdukter(sorterteProdukter);
+
+Hvordan fungerer koden?
+
+a og b representerer to produkter som sammenlignes. Når vi skriver a.pris - b.pris, kommer produktet med lavest pris først.
+
+Testing og resultat
+
+Jeg valgte «Lavest pris først» i nettleseren. Produktene ble vist i denne rekkefølgen:
+
+Mus – 299 kr
+
+Tastatur – 599 kr
+
+Hodetelefoner – 799 kr
+
+Skjerm – 2499 kr
+
+Hva lærte jeg?
+
+Jeg lærte hvordan sort() kan sortere JavaScript-objekter etter pris, og hvorfor det er nyttig å lage en kopi av arrayet før sortering.
+
+## Steg 5 – sorter fra høyest til lavest pris
+
+<img width="599" height="285" alt="image" src="https://github.com/user-attachments/assets/3f518b66-dfa6-421d-930b-0c1aac194a71" />
+
+<img width="937" height="487" alt="image" src="https://github.com/user-attachments/assets/7a3c266d-304f-4093-a68c-ddfe6edee3d4" />
+
+Hva gjorde jeg?
+
+Jeg brukte JavaScript-metoden sort() for å sortere produktene fra høyest til lavest pris.
+
+Jeg brukte b.pris - a.pris for å få motsatt rekkefølge av sorteringen i Steg 4.
+
+Kodeutdrag fra js/script.js:
+
+const sorterteProdukter = [...produkter];
+
+sorterteProdukter.sort((a, b) => b.pris - a.pris);
+
+visProdukter(sorterteProdukter);
+
+Hvordan fungerer koden?
+
+a og b representerer to produkter som JavaScript sammenligner.
+
+a.pris - b.pris sorterer fra lavest til høyest pris.
+
+b.pris - a.pris sorterer fra høyest til lavest pris.
+
+Jeg brukte [...produkter] for å lage en kopi av produktarrayet før sortering.
+
+Testing og resultat
+
+Jeg valgte «Høyest pris først» i nedtrekksmenyen. Produktene ble vist i denne rekkefølgen:
+
+Skjerm – 2499 kr
+
+Hodetelefoner – 799 kr
+
+Tastatur – 599 kr
+
+Mus – 299 kr
+
+Hva lærte jeg?
+
+Jeg lærte hvordan jeg kan endre sorteringsrekkefølgen ved å bytte plass på a og b, og hvordan sort() kan brukes sammen med visProdukter() for å oppdatere nettsiden.
+
+
+## Steg 6 – sorter tekst fra A til Å
+
+<img width="665" height="307" alt="image" src="https://github.com/user-attachments/assets/4a3a7e4a-0c0a-4f93-9bd4-849063a685a0" />
+
+<img width="955" height="552" alt="image" src="https://github.com/user-attachments/assets/62de1af7-2eca-4f97-a196-260fdf5e79d5" />
+
+Hva gjorde jeg?
+
+Jeg brukte JavaScript-metoden localeCompare() for å sortere produktene alfabetisk etter navn, fra A til Å.
+
+Jeg laget en kopi av produktarrayet med [...produkter] før sorteringen, slik at det opprinnelige arrayet ikke ble endret.
+
+Kodeutdrag fra js/script.js:
+
+const sorterteProdukter = [...produkter];
+
+sorterteProdukter.sort((a, b) =>
+    a.navn.localeCompare(b.navn, "nb")
+);
+
+visProdukter(sorterteProdukter);
+
+Hvordan fungerer koden?
+
+a.navn og b.navn er navnene på to produkter som sammenlignes.
+
+localeCompare() sammenligner tekst alfabetisk. Jeg brukte "nb" for norsk alfabetisk sortering.
+
+Testing og resultat
+
+Jeg valgte «A til Å» i nedtrekksmenyen og kontrollerte at produktene ble vist i denne rekkefølgen:
+
+Hodetelefoner
+
+Mus
+
+Skjerm
+
+Tastatur
+
+Alle fire produktene ble sortert riktig.
+
+Hva lærte jeg?
+
+Jeg lærte at tall kan sorteres ved hjelp av subtraksjon, mens tekst kan sorteres med localeCompare(). Jeg lærte også hvordan sort() og visProdukter() brukes sammen for å oppdatere produktrekkefølgen.
+
+
+## Steg 7 – sorter fra Å til A
+
+<img width="582" height="283" alt="image" src="https://github.com/user-attachments/assets/7ebd6046-2c39-44ea-93fd-4cdebf6d5269" />
+
+<img width="959" height="498" alt="image" src="https://github.com/user-attachments/assets/a51ff783-47d4-41fe-af4e-73cfdc618ee1" />
+
+Hva gjorde jeg?
+
+Jeg brukte sort() og localeCompare() for å sortere produktene i motsatt alfabetisk rekkefølge, fra Å til A.
+
+Jeg byttet plass på a og b for å få motsatt rekkefølge av sorteringen i Steg 6.
+
+Kodeutdrag fra js/script.js:
+
+const sorterteProdukter = [...produkter];
+
+sorterteProdukter.sort((a, b) =>
+    b.navn.localeCompare(a.navn, "nb")
+);
+
+visProdukter(sorterteProdukter);
+
+Hvordan fungerer koden?
+
+a.navn.localeCompare(b.navn) sorterer fra A til Å, mens b.navn.localeCompare(a.navn) sorterer fra Å til A.
+
+Jeg brukte "nb" for å sammenligne produktnavnene etter norsk alfabetisk rekkefølge.
+
+Testing og resultat
+
+Jeg valgte «Å til A» i nedtrekksmenyen og kontrollerte at produktene ble vist i denne rekkefølgen:
+
+Tastatur
+
+Skjerm
+
+Mus
+
+Hodetelefoner
+
+Alle fire produktene ble sortert i motsatt alfabetisk rekkefølge.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan jeg kan snu alfabetisk sortering ved å bytte plass på a og b i localeCompare(), uten å endre produktinformasjonen.
+
+## Steg 8 – bruk if for å velge sortering
+
+<img width="536" height="281" alt="image" src="https://github.com/user-attachments/assets/01271d7d-e817-45ab-a11d-cf29c6d34b4a" />
+
+<img width="959" height="489" alt="image" src="https://github.com/user-attachments/assets/43933d2a-0abf-4eb5-94a7-2c122771c368" />
+
+Hva gjorde jeg?
+
+Jeg brukte if og else if i js/script.js for å bestemme hvordan produktene skal sorteres når brukeren velger et alternativ i nedtrekksmenyen.
+
+Jeg brukte sortering.value for å hente valget og laget en kopi av produktarrayet med [...produkter].
+
+Kode fra js/script.js:
+
+const sortering = document.getElementById("sortering");
+
+sortering.addEventListener("change", () => {
+    const valg = sortering.value;
+    const sorterteProdukter = [...produkter];
+
+    if (valg === "az") {
+        sorterteProdukter.sort((a, b) =>
+            a.navn.localeCompare(b.navn, "nb")
+        );
+    } else if (valg === "za") {
+        sorterteProdukter.sort((a, b) =>
+            b.navn.localeCompare(a.navn, "nb")
+        );
+    } else if (valg === "lavest") {
+        sorterteProdukter.sort((a, b) => a.pris - b.pris);
+    } else if (valg === "hoyest") {
+        sorterteProdukter.sort((a, b) => b.pris - a.pris);
+    }
+
+    visProdukter(sorterteProdukter);
+});
+
+Hvordan fungerer koden?
+
+Når brukeren velger et alternativ, kjører change-eventet. if og else if kontrollerer hvilket alternativ som er valgt.
+
+Først sorteres produktene med sort(). Deretter bruker jeg visProdukter(sorterteProdukter) for å vise dem i riktig rekkefølge.
+
+Testing og resultat
+
+Jeg testet alle fire sorteringsalternativene:
+
+A til Å: Hodetelefoner, Mus, Skjerm, Tastatur.
+
+Å til A: Tastatur, Skjerm, Mus, Hodetelefoner.
+
+Lavest pris først: Mus, Tastatur, Hodetelefoner, Skjerm.
+
+Høyest pris først: Skjerm, Hodetelefoner, Tastatur, Mus.
+
+Alle fire alternativene fungerte som forventet.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan if/else if kan brukes sammen med sort() og change-eventet for å velge forskjellige sorteringsmetoder.
+
+## Steg 9 – hvorfor kan det være lurt å kopiere arrayet?
+
+<img width="674" height="133" alt="image" src="https://github.com/user-attachments/assets/b362d527-f0ac-47fb-8986-7f547ea0679a" />
+
+<img width="959" height="481" alt="image" src="https://github.com/user-attachments/assets/a90bd7b2-62a3-4043-bf43-494836056a3b" />
+
+Hva gjorde jeg?
+
+Jeg brukte spread-syntax (...) for å lage en kopi av produktarrayet før jeg sorterte produktene.
+
+Dette gjorde jeg fordi sort() endrer rekkefølgen på elementene i arrayet det brukes på. Jeg ønsket å beholde den opprinnelige rekkefølgen i produkter.
+
+Kodeutdrag fra js/script.js:
+
+const sorterteProdukter = [...produkter];
+
+sorterteProdukter.sort((a, b) => a.pris - b.pris);
+
+visProdukter(sorterteProdukter);
+
+Hvordan fungerer koden?
+
+produkter inneholder de opprinnelige produktobjektene.
+
+[...produkter] lager et nytt array med de samme produktene.
+
+sort() endrer rekkefølgen i kopien.
+
+visProdukter() viser produktene i den nye rekkefølgen.
+
+Testing og resultat
+
+Jeg testet sortering etter både navn og pris. Produktene ble vist i riktig rekkefølge, uten at jeg trengte å endre det opprinnelige produktarrayet.
+
+Hva lærte jeg?
+
+Jeg lærte at sort() endrer arrayet det brukes på, og at spread-syntax kan brukes til å lage en kopi. Dette er nyttig når jeg senere vil kombinere sortering med søk og filtrering.
+
+## Hele sorteringsfunksjonen kan da ligne på
+
+Hva gjorde jeg?
+
+Jeg samlet sorteringsfunksjonen i js/script.js slik at brukeren kan sortere produktene etter navn eller pris.
+
+Jeg brukte addEventListener("change"), if/else if, sort() og localeCompare() for å håndtere de forskjellige valgene.
+
+Kode fra js/script.js:
+
+const sortering = document.getElementById("sortering");
+
+sortering.addEventListener("change", () => {
+    const valg = sortering.value;
+    const sorterteProdukter = [...produkter];
+
+    if (valg === "az") {
+        sorterteProdukter.sort((a, b) =>
+            a.navn.localeCompare(b.navn, "nb")
+        );
+    } else if (valg === "za") {
+        sorterteProdukter.sort((a, b) =>
+            b.navn.localeCompare(a.navn, "nb")
+        );
+    } else if (valg === "lavest") {
+        sorterteProdukter.sort((a, b) => a.pris - b.pris);
+    } else if (valg === "hoyest") {
+        sorterteProdukter.sort((a, b) => b.pris - a.pris);
+    }
+
+    visProdukter(sorterteProdukter);
+});
+
+Testing og resultat
+
+Jeg testet alle fire sorteringsalternativene i nettleseren:
+
+A til Å – alfabetisk rekkefølge.
+
+Å til A – motsatt alfabetisk rekkefølge.
+
+Lavest pris først – fra billigst til dyrest.
+
+Høyest pris først – fra dyrest til billigst.
+
+Alle fire alternativene fungerte som forventet.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan flere sorteringsvalg kan samles i én funksjon. Jeg fikk også bedre forståelse av hvordan change-eventet, if/else if, sort() 
+og visProdukter() samarbeider.
+
+## Grunnoppgaven
+
+Hva gjorde jeg?
+
+Jeg laget en sorteringsfunksjon i nettbutikken slik at brukeren kan velge hvordan produktene skal vises.
+
+Jeg brukte sort(), localeCompare() og visProdukter() for å sortere produktobjektene etter navn og pris.
+
+Kodeutdrag fra js/script.js:
+
+// Lavest pris først
+sorterteProdukter.sort((a, b) => a.pris - b.pris);
+
+// Høyest pris først
+sorterteProdukter.sort((a, b) => b.pris - a.pris);
+
+// A til Å
+sorterteProdukter.sort((a, b) =>
+    a.navn.localeCompare(b.navn, "nb")
+);
+
+// Å til A
+sorterteProdukter.sort((a, b) =>
+    b.navn.localeCompare(a.navn, "nb")
+);
+
+// Viser produktene på nytt
+visProdukter(sorterteProdukter);
+
+Testing og resultat
+
+Jeg testet alle fire sorteringsalternativene i nettleseren. Produktene ble vist i riktig rekkefølge etter både navn og pris.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan sort() kan endre rekkefølgen på produkter, og hvordan visProdukter() oppdaterer produktkortene uten å endre informasjonen om produktene.
+
+## Utfordring 1 – kombiner filtrering og sortering
+
+<img width="587" height="205" alt="image" src="https://github.com/user-attachments/assets/f6aaab37-7500-45db-a4a4-81772ded839a" />
+
+<img width="946" height="506" alt="image" src="https://github.com/user-attachments/assets/a0dc516a-0665-40a5-98cd-8bcaf8fb632e" />
+
+Hva gjorde jeg?
+
+Jeg kombinerte filtrering og sortering slik at brukeren kan velge en produktkategori og deretter sortere bare produktene i denne kategorien.
+
+Jeg brukte filter() for å velge riktige produkter og sort() for å endre rekkefølgen.
+
+Kodeutdrag fra js/script.js:
+
+const kategori = document.getElementById("kategoriFilter").value;
+
+const sorterteProdukter = produkter.filter(produkt => {
+    if (kategori === "Alle") return true;
+
+    if (kategori === "Tastatur") {
+        return produkt.navn === "Tastatur";
+    }
+
+    return produkt.kategori === kategori;
+});
+
+Etter filtreringen sorterer jeg sorterteProdukter etter brukerens valg og viser resultatet med:
+
+visProdukter(sorterteProdukter);
+
+Testing og resultat
+
+Jeg valgte kategorien «Tilbehør» og deretter «Høyest pris først».
+
+Produktene ble vist i riktig rekkefølge:
+
+Hodetelefoner – 799 kr
+
+Tastatur – 599 kr
+
+Mus – 299 kr
+
+Produktet «Skjerm» ble ikke vist fordi det tilhører kategorien «Skjermer».
+
+Hva lærte jeg?
+
+Jeg lærte hvordan filter() og sort() kan brukes sammen. Først filtrerer jeg produktene etter kategori, deretter sorterer jeg resultatet og viser det med visProdukter().
+
+## Utfordring 2 – kombiner søk, filtrering og sortering
+
+<img width="574" height="182" alt="image" src="https://github.com/user-attachments/assets/a7847e59-23a0-4baf-b511-8d0b11034a70" />
+
+<img width="950" height="495" alt="image" src="https://github.com/user-attachments/assets/8314a9d4-03f3-4262-a775-040e2e96da56" />
+
+Hva gjorde jeg?
+
+Jeg kombinerte søk, filtrering og sortering slik at brukeren kan søke etter produkter, velge kategori og sortere resultatene.
+
+Jeg brukte filter() for å kontrollere både søketeksten og kategorien. Deretter brukte jeg sort() og visProdukter() for å vise resultatet i riktig rekkefølge.
+
+Kodeutdrag fra js/script.js:
+
+const kategori = document.getElementById("kategoriFilter").value;
+const sok = document.getElementById("sokefelt").value.toLowerCase().trim();
+
+const sorterteProdukter = produkter.filter(produkt => {
+    const passerSok =
+        produkt.navn.toLowerCase().includes(sok) ||
+        produkt.beskrivelse.toLowerCase().includes(sok) ||
+        produkt.kategori.toLowerCase().includes(sok);
+
+    const passerKategori =
+        kategori === "Alle" ||
+        (kategori === "Tastatur" && produkt.navn === "Tastatur") ||
+        produkt.kategori === kategori;
+
+    return passerSok && passerKategori;
+});
+
+For å oppdatere resultatene når kategorien endres, brukte jeg også:
+
+kategoriFilter.addEventListener("change", () => {
+    sortering.dispatchEvent(new Event("change"));
+});
+
+Etter filtreringen sorteres produktene etter valgt sorteringsmetode og vises med visProdukter(sorterteProdukter).
+
+Testing og resultat
+
+Jeg testet følgende:
+
+Valgte kategorien «Tilbehør».
+
+Valgte «Høyest pris først».
+
+Kontrollerte at Hodetelefoner, Tastatur og Mus ble vist i riktig prisrekkefølge.
+
+Skrev «mus» i søkefeltet.
+
+Resultatet var at bare Mus – 299 kr ble vist.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan filter() og sort() kan kombineres, og hvordan hendelser kan brukes til å oppdatere produktene når brukeren endrer søk, kategori eller sortering.
+
+
+## Utfordring 3 – sorter etter en ny egenskap
+
+<img width="562" height="227" alt="image" src="https://github.com/user-attachments/assets/afb2a935-2d5d-4197-87a1-60f246d52635" />
+
+<img width="957" height="486" alt="image" src="https://github.com/user-attachments/assets/01009ec9-b266-4170-93b1-17d92034ee02" />
+
+Hva gjorde jeg?
+
+Jeg la til en ny egenskap, rating, på alle fire produktene i js/produkter.js.
+
+Deretter la jeg til sorteringsvalget «Beste vurdering først» i index.html og brukte sort() i js/script.js for å vise produktene fra høyest til lavest vurdering.
+
+Kode fra js/produkter.js:
+
+// Eksempel på rating for produktene
+rating: 4.2 // Tastatur
+rating: 4.7 // Mus
+rating: 4.5 // Skjerm
+rating: 4.8 // Hodetelefoner
+
+Kode fra index.html:
+
+<option value="rating">Beste vurdering først</option>
+
+Kodeutdrag fra js/script.js:
+
+else if (valg === "rating") {
+    sorterteProdukter.sort((a, b) => b.rating - a.rating);
+}
+
+Testing og resultat
+
+Jeg valgte «Beste vurdering først» i nettleseren. Produktene ble vist i riktig rekkefølge:
+
+Hodetelefoner – 4.8
+
+Mus – 4.7
+
+Skjerm – 4.5
+
+Tastatur – 4.2
+
+Hva lærte jeg?
+
+Jeg lærte hvordan jeg kan legge til en ny egenskap på produktobjekter og bruke den til sortering. Jeg lærte også at b.rating - a.rating viser høyeste vurdering først.
+
+Tenk gjennom løsningen – Hva har jeg lært?
+
+Hva gjør sort()?
+
+sort() sammenligner elementene i et array og endrer rekkefølgen deres.
+
+Hva er a og b?
+
+a og b representerer to produktobjekter som JavaScript sammenligner.
+
+Hvordan fungerer sortering etter pris?
+
+a.pris - b.pris  // Lavest pris først
+b.pris - a.pris  // Høyest pris først
+
+Hvorfor bruker jeg localeCompare()?
+
+Jeg bruker localeCompare() for å sortere produktnavn alfabetisk.
+
+a.navn.localeCompare(b.navn, "nb") // A til Å
+b.navn.localeCompare(a.navn, "nb") // Å til A
+
+Hvorfor bruker jeg [...produkter]?
+
+Jeg lager en kopi av produktarrayet slik at jeg kan sortere produktene uten å endre rekkefølgen i original-arrayet.
+
+const sorterteProdukter = [...produkter];
+
+Hvorfor bruker jeg visProdukter()?
+
+sort() endrer rekkefølgen i arrayet, men nettsiden må oppdateres for at brukeren skal se resultatet.
+
+visProdukter(sorterteProdukter);
+
+Testing og resultat
+
+Jeg testet sortering fra A til Å, Å til A, lavest pris først, høyest pris først og beste vurdering først. Alle alternativene fungerte.
+
+Jeg testet også sortering sammen med søk og kategorifiltrering.
+
+Hva lærte jeg?
+
+Jeg lærte hvordan JavaScript sammenligner produkter, hvordan if/else if bestemmer sorteringsmetoden, og hvordan visProdukter() viser resultatet på nettsiden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
