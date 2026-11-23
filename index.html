@@ -31,8 +31,29 @@
     
  
 <hi>Våre produkter</hi>
-<button id="visAlle">Vis alle</button>
+<button id="visAlle" class="filterKnapp" data-kategori="Alle">Vis alle</button>
 <button id="visBillige">Under 500 kr</button>
+<button id="visMellomPris">500-1000 kr</button>
+<button id="visOver1000">Over 1000 kr</button>
+<button id="visTilbehor" class="filterKnapp" data-kategori="Tilbehør">Tilbehør</button>
+<button id="visSkjermer" class="filterKnapp" data-kategori="Skjermer">Skjermer</button>
+<button id="visTastatur" class="filterKnapp" data-kategori="Tastatur">Tastatur</button>
+<select id="kategoriFilter">
+    <option value="Alle">Alle</option>
+    <option value="Tilbehør">Tilbehør</option>
+    <option value="Tastatur">Tastatur</option>
+    <option value="Skjermer">Skjermer</option>
+</select>
+
+<select id="sortering">
+    <option value="standard">Sorter produkter</option>
+    <option value="az">A til Å</option>
+    <option value="za">Å til A</option>
+    <option value="lavest">Lavest pris først</option>
+    <option value="hoyest">Høyest pris først</option>
+    <option value="rating">Beste vurdering først</option>
+</select>
+
 <input type="text" id="sokefelt" placeholder="søk etter produkt...">
 <p id="antallTreff"></p>
 <div id="produktContainer">

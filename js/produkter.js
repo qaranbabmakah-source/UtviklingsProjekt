@@ -6,7 +6,8 @@ pris: 599,
 bilde: "Bilder/tastatur.avif",
 beskrivelse: "Et enkelt gamingtastatur.",
 lager: 0,
-kategori: "Tilbehør"
+kategori: "Tilbehør",
+rating: 4.2
 },
 {
 id: 2,
@@ -15,7 +16,8 @@ pris: 299,
 bilde: "Bilder/mus.webp",
 beskrivelse: "Trådløs mus.",
 lager: 6,
-kategori: "Tilbehør"
+kategori: "Tilbehør",
+rating:   4.7
 },
 { 
 id: 3,
@@ -24,7 +26,8 @@ pris: 2499,
 bilde: "Bilder/skjerm.jpeg",
 beskrivelse: "24 tommer skjerm.",
 lager: 3,
-kategori: "Skjermer"
+kategori: "Skjermer",
+rating: 4.5
 },
 {
 id: 4,
@@ -33,7 +36,8 @@ pris: 799,
 bilde: "Bilder/hode.jpeg",
 beskrivelse: "trådløse hodetelefoner.",
 lager: 8,
-kategori: "Tilbehør"
+kategori: "Tilbehør",
+rating: 4.8
 }
 ];
 

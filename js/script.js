@@ -26,7 +26,7 @@ let handlekurv = [];
 window.leggTilHandlekurv = function(id) {  
 const produkt = produkter.find(p => p.id === id);
 if (produkt) {
-const eksisterende = handlekurv.find(p => p.id);
+const eksisterende = handlekurv.find(p => p.id === id);
 if (eksisterende) {
     eksisterende.antall++;
 } else {
@@ -48,7 +48,13 @@ if (handlekurv.length === 0) {
 }
 let total = 0;
 handlekurv.forEach((produkt, index) => {
-kurvContainer.innerHTML += `<p>${produkt.navn} -antall ${produkt.antall} -pris: ${produkt.pris * produkt.antall} kr <button class="fjernKnapp" data-index="(${index})">Fjern</button></p>`;
+kurvContainer.innerHTML += `
+ <p>
+   ${produkt.navn} - antall ${produkt.antall}
+   -pris: ${produkt.pris * produkt.antall} kr
+   <button class="fjernKnapp" data-index="${index}">Fjern</button>
+</p>
+`;
 total = total + produkt.pris * produkt.antall;
 });
 kurvContainer.querySelectorAll(".fjernKnapp").forEach((knapp) => {
@@ -61,7 +67,11 @@ document.getElementById("totalPris").textContent =
 }
 function fjernProdukt(index) {
     console.log("Fjern ble klikket", index);
+  if (handlekurv[index].antall > 1) {
+    handlekurv[index].antall--;
+  } else {
     handlekurv.splice(index, 1);
+  }
     visHandlekurv();
     oppdaterAntall();
 }
@@ -104,7 +114,7 @@ container.innerHTML += `
 <p>På lager: ${produkt.lager}</p>
 <p>${status}</p>
 <button onclick="leggTilHandlekurv(${produkt.id})">køb</button>
-<button class="produktknapp">less mer</button>
+<button class="produktknapp5 mer" onclick="visMer(${produkt.id})">Les mer</button>
 </div>
 `;
 });
@@ -114,8 +124,51 @@ document.getElementById("visAlle").addEventListener("click", () => {
 visProdukter(produkter);
 });
 document.getElementById("visBillige").addEventListener("click", () => {
-const billigeProdukter = produkter.filter(produkt => produkt.pris < 500);
-visProdukter(billigeProdukter);
+    const billigeProdukter = produkter.filter(produkt => produkt.pris < 500);
+    visProdukter(billigeProdukter);
+});
+
+document.getElementById("visMellomPris").addEventListener("click", () => {
+    const resultat = produkter.filter(produkt =>
+        produkt.pris >= 500 && produkt.pris <= 1000
+    );
+    visProdukter(resultat);
+});
+
+document.getElementById("visOver1000").addEventListener("click", () => {
+    const resultat = produkter.filter(produkt => produkt.pris > 1000);
+    visProdukter(resultat);
+});
+
+const filterKnapper = document.querySelectorAll(".filterKnapp");
+console.log(filterKnapper);
+filterKnapper.forEach(knapp => {
+    knapp.addEventListener("click", () => {
+        let kategori = knapp.dataset.kategori;
+        console.log("Valgt kategori:", kategori);
+
+
+if (kategori === "Alle") {
+    visProdukter(produkter);
+} else {
+    let filtrerteProdukter = produkter.filter(
+        produkt => produkt.kategori === kategori
+    );
+    visProdukter(filtrerteProdukter);
+}
+
+    });
+});
+document.getElementById("visTilbehor").addEventListener("click", () => {
+    visProdukter(produkter.filter(produkt => produkt.kategori === "Tilbehør"));
+});
+
+document.getElementById("visSkjermer").addEventListener("click", () => {
+    visProdukter(produkter.filter(produkt => produkt.kategori === "Skjermer"));
+});
+
+document.getElementById("visTastatur").addEventListener("click", () => {
+    visProdukter(produkter.filter(produkt => produkt.navn === "Tastatur"));
 });
 let antallTilbehor =0;
 produkter.forEach((produkt) => {
@@ -127,15 +180,86 @@ console.log(" Antall Tilbehør:", antallTilbehor);
 
 sokefelt.addEventListener("input", () => {
     const sok = sokefelt.value.toLowerCase();
-    const resultat = produkter.filter(produkt =>
+    
+const valgtKategori = document.getElementById("kategoriFilter").value;
+const resultat = produkter.filter(produkt =>
+    
+    (valgtKategori === "Alle" ||
+     produkt.kategori === valgtKategori ||
+     (valgtKategori === "Tastatur" && produkt.navn === "Tastatur")) &&
+    (
         produkt.navn.toLowerCase().includes(sok) ||
         produkt.beskrivelse.toLowerCase().includes(sok) ||
         produkt.kategori.toLowerCase().includes(sok)
-    );
-document.getElementById("antallTreff").textContent = resultat.length + "produkterfunnet";
+    )
+);
+
 if(resultat.length === 0) {
     container.innerHTML = "<p>Ingen produkter funnet.</p>";
 } else {
     visProdukter(resultat);
 }
+});
+
+
+window.visMer = function(id) {
+    const produkt = produkter.find(p => p.id === id);
+
+    if (produkt) {
+        alert(
+            produkt.navn + "\n\n" +
+            produkt.beskrivelse + "\n" +
+            "Pris: " + produkt.pris + " kr\n" +
+            "Kategori: " + produkt.kategori
+        );
+    }
+};
+
+
+
+const kategoriFilter = document.getElementById("kategoriFilter");
+
+kategoriFilter.addEventListener("change", () => {
+    sortering.dispatchEvent(new Event("change"));
+});
+
+
+const sortering = document.getElementById("sortering");
+
+sortering.addEventListener("change", () => {
+    const valg = sortering.value;
+    const kategori = document.getElementById("kategoriFilter").value;
+    const sok = document.getElementById("sokefelt").value.toLowerCase().trim();
+const sorterteProdukter = produkter.filter(produkt => {
+
+    const passerSok =
+        produkt.navn.toLowerCase().includes(sok) ||
+        produkt.beskrivelse.toLowerCase().includes(sok) ||
+        produkt.kategori.toLowerCase().includes(sok);
+
+    const passerKategori =
+        kategori === "Alle" ||
+        (kategori === "Tastatur" && produkt.navn === "Tastatur") ||
+        produkt.kategori === kategori;
+
+    return passerSok && passerKategori;
+});
+
+    if (valg === "az") {
+        sorterteProdukter.sort((a, b) =>
+            a.navn.localeCompare(b.navn, "nb")
+        );
+    } else if (valg === "za") {
+        sorterteProdukter.sort((a, b) =>
+            b.navn.localeCompare(a.navn, "nb")
+        );
+    } else if (valg === "lavest") {
+        sorterteProdukter.sort((a, b) => a.pris - b.pris);
+    } else if (valg === "hoyest") {
+    sorterteProdukter.sort((a, b) => b.pris - a.pris);
+} else if (valg === "rating") {
+    sorterteProdukter.sort((a, b) => b.rating - a.rating);
+}
+
+    visProdukter(sorterteProdukter);
 });

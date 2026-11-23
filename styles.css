@@ -53,7 +53,7 @@ margin: 30px auto;
     cursor: pointer;
 
 }
-.produkt button.produktknapp {
+.produkt button.produktknapp5 {
     background-color: green;
     color: white;
 } 
@@ -137,4 +137,133 @@ main h1 {
     width: 400px;
     max-width: 90%;
     border-radius: 10px;
+}
+
+
+/* Extraoppgave – Farger på filterknapper */
+
+#visAlle {
+    background-color: #2563eb;
+    color: white;
+}
+
+#visBillige {
+    background-color: #16a34a;
+    color: white;
+}
+
+#visMellomPris {
+    background-color: #f59e0b;
+    color: white;
+}
+
+#visOver1000 {
+    background-color: #dc2626;
+    color: white;
+}
+
+#visTilbehor {
+    background-color: #9333ea;
+    color: white;
+}
+
+#visSkjermer {
+    background-color: #0891b2;
+    color: white;
+}
+
+#visTastatur {
+    background-color: #475569;
+    color: white;
+}
+
+#kategoriFilter {
+    background-color: #db2777;
+    color: white;
+}
+
+
+/* Extraoppgave – Større filterknapper */
+
+#visAlle,
+#visBillige,
+#visMellomPris,
+#visOver1000,
+#visTilbehor,
+#visSkjermer,
+#visTastatur,
+#kategoriFilter {
+    padding: 8px 13px;
+    font-size: 15px;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+    margin: 2px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+#visAlle:hover,
+#visBillige:hover,
+#visMellomPris:hover,
+#visOver1000:hover,
+#visTilbehor:hover,
+#visSkjermer:hover,
+#visTastatur:hover,
+#kategoriFilter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+#sokefelt {
+    display: inline-block;
+    width: 180px;
+    padding: 8px 10px;
+    font-size: 14px;
+    margin: 3px;
+    border: 2px solid #60a5fa;
+    border-radius: 9px;
+    box-sizing: border-box;
+    background-color: white;
+    color: #1e293b;
+    vertical-align: middle;
+}
+
+#sokefelt:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.25);
+}
+
+
+/* Extraoppgave – Farger på navbar */
+
+.navbar a:nth-of-type(1) {
+    background-color: #2563eb;
+    color: white;
+}
+
+.navbar a:nth-of-type(2) {
+    background-color: #16a34a;
+    color: white;
+}
+
+.navbar a:nth-of-type(3) {
+    background-color: #9333ea;
+    color: white;
+}
+
+.navbar a {
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.navbar a:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
 }
