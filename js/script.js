@@ -182,6 +182,7 @@ sokefelt.addEventListener("input", () => {
     const sok = sokefelt.value.toLowerCase();
     
 const valgtKategori = document.getElementById("kategoriFilter").value;
+const maksPris = Number(document.getElementById("prisSlider").value);
 const resultat = produkter.filter(produkt =>
     
     (valgtKategori === "Alle" ||
@@ -191,10 +192,17 @@ const resultat = produkter.filter(produkt =>
         produkt.navn.toLowerCase().includes(sok) ||
         produkt.beskrivelse.toLowerCase().includes(sok) ||
         produkt.kategori.toLowerCase().includes(sok)
-    )
+           ) &&
+        produkt.pris <= maksPris
 );
 
-if(resultat.length === 0) {
+const antall = resultat.length;
+
+document.getElementById("prisResultat").textContent =
+    "Vis " + antall +
+    (antall === 1 ? " produkt" : " produkter");
+
+if (resultat.length === 0) {
     container.innerHTML = "<p>Ingen produkter funnet.</p>";
 } else {
     visProdukter(resultat);
@@ -242,7 +250,10 @@ const sorterteProdukter = produkter.filter(produkt => {
         (kategori === "Tastatur" && produkt.navn === "Tastatur") ||
         produkt.kategori === kategori;
 
-    return passerSok && passerKategori;
+    const passerPris =
+    produkt.pris <= Number(document.getElementById("prisSlider").value);
+
+return passerSok && passerKategori && passerPris;
 });
 
     if (valg === "az") {
@@ -262,4 +273,44 @@ const sorterteProdukter = produkter.filter(produkt => {
 }
 
     visProdukter(sorterteProdukter);
+    const antall = sorterteProdukter.length;
+
+document.getElementById("prisResultat").textContent =
+    "Vis " + antall +
+    (antall === 1 ? " produkt" : " produkter");
+});
+
+const prisSlider = document.getElementById("prisSlider");
+const maksPrisTekst = document.getElementById("maksPrisTekst");
+const prisResultat = document.getElementById("prisResultat");
+
+prisSlider.addEventListener("input", () => {
+    const maksPris = Number(prisSlider.value);
+
+    maksPrisTekst.textContent = maksPris + " kr";
+
+    const sok = document.getElementById("sokefelt").value.toLowerCase().trim();
+const kategori = document.getElementById("kategoriFilter").value;
+
+const filtrerteProdukter = produkter.filter(produkt => {
+    const passerSok =
+        produkt.navn.toLowerCase().includes(sok) ||
+        produkt.beskrivelse.toLowerCase().includes(sok) ||
+        produkt.kategori.toLowerCase().includes(sok);
+
+    const passerKategori =
+        kategori === "Alle" ||
+        (kategori === "Tastatur" && produkt.navn === "Tastatur") ||
+        produkt.kategori === kategori;
+
+    const passerPris = produkt.pris <= maksPris;
+
+    return passerSok && passerKategori && passerPris;
+});
+
+ prisResultat.textContent =
+    "Vis " + filtrerteProdukter.length +
+    (filtrerteProdukter.length === 1 ? " produkt" : " produkter");
+
+    visProdukter(filtrerteProdukter);
 });

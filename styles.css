@@ -267,3 +267,48 @@ main h1 {
     transform: translateY(-3px);
     filter: brightness(1.1);
 }
+
+
+/* Pris-filter som kan åpnes og lukkes */
+.prisFilterBoks {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    margin: 15px 0;
+}
+
+.prisFilterBoks summary {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.prisInnhold {
+    padding-top: 15px;
+}
+
+.prisVerdier {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#prisSlider {
+    width: 100%;
+    accent-color: #65a348;
+    cursor: pointer;
+}
+
+#prisResultat {
+    background-color: #65a348;
+    color: white;
+    padding: 12px;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+}

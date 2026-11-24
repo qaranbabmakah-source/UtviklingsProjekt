@@ -36,6 +36,27 @@
 <button id="visMellomPris">500-1000 kr</button>
 <button id="visOver1000">Over 1000 kr</button>
 <button id="visTilbehor" class="filterKnapp" data-kategori="Tilbehør">Tilbehør</button>
+<details class="prisFilterBoks">
+    <summary>Pris</summary>
+
+    <div class="prisInnhold">
+        <div class="prisVerdier">
+            <span>0 kr</span>
+            <span id="maksPrisTekst">3000 kr</span>
+        </div>
+
+        <input
+            type="range"
+            id="prisSlider"
+            min="0"
+            max="3000"
+            value="3000"
+            step="100"
+        >
+
+        <p id="prisResultat">Vis 4 produkter</p>
+    </div>
+</details>
 <button id="visSkjermer" class="filterKnapp" data-kategori="Skjermer">Skjermer</button>
 <button id="visTastatur" class="filterKnapp" data-kategori="Tastatur">Tastatur</button>
 <select id="kategoriFilter">
