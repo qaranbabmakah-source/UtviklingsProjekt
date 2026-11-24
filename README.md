@@ -2049,6 +2049,75 @@ Hva lærte jeg?
 Jeg lærte hvordan JavaScript sammenligner produkter, hvordan if/else if bestemmer sorteringsmetoden, og hvordan visProdukter() viser resultatet på nettsiden.
 
 
+## Extraoppgave – Dynamisk prisfilter med slider
+
+<img width="943" height="544" alt="image" src="https://github.com/user-attachments/assets/92c64186-6acf-45b2-b258-da9d53cac0ea" />
+
+<img width="959" height="499" alt="image" src="https://github.com/user-attachments/assets/333cbc85-954a-43de-9cd2-e6cbebd7cc85" />
+
+Hva gjorde jeg?
+
+Jeg laget et dynamisk prisfilter som ligner på prisfilteret hos Elkjøp.
+
+Brukeren kan åpne og lukke prisfilteret ved å klikke på «Pris». Når brukeren flytter slideren, oppdateres maksimalprisen, antall produkter og produktene som vises.
+
+Jeg kombinerte også prisfilteret med søk, kategorifiltrering og sortering.
+
+Kode fra index.html
+
+<details class="prisFilterBoks">
+    <summary>Pris</summary>
+
+    <div class="prisInnhold">
+        <div class="prisVerdier">
+            <span>0 kr</span>
+            <span id="maksPrisTekst">3000 kr</span>
+        </div>
+
+        <input type="range" id="prisSlider"
+               min="0" max="3000" value="3000" step="100">
+
+        <p id="prisResultat">Vis 4 produkter</p>
+    </div>
+</details>
+
+Kodeutdrag fra js/script.js
+
+const passerPris =
+    produkt.pris <= Number(document.getElementById("prisSlider").value);
+
+return passerSok && passerKategori && passerPris;
+
+Oppdatering av antall produkter:
+
+const antall = sorterteProdukter.length;
+
+document.getElementById("prisResultat").textContent =
+    "Vis " + antall +
+    (antall === 1 ? " produkt" : " produkter");
+
+Testing og resultat
+
+Prisfilteret åpnes og lukkes.
+
+Sliderens verdi beholdes når filteret lukkes.
+
+Maksimalprisen oppdateres når slideren flyttes.
+
+Antall produkter beregnes riktig.
+
+Prisfilteret fungerer sammen med søk og kategori.
+
+Prisfilteret fungerer sammen med sortering.
+
+Jeg testet blant annet «Skjermer» med maksimalpris 500 kr og fikk 0 produkter. Med «Tilbehør» og maksimalpris 500 kr fikk jeg Mus. Ved maksimalpris 1000 kr og «Høyest pris først» ble tre produkter vist i riktig rekkefølge.
+
+Hva lærte jeg?
+
+Jeg lærte å bruke <details>, <summary> og input type="range" for å lage et prisfilter som kan åpnes, lukkes og justeres.
+
+Jeg lærte også hvordan filter(), sort() og visProdukter() kan samarbeide for å oppdatere nettsiden.
+
 
 
 
